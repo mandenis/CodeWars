@@ -1,0 +1,106 @@
+	ЗАДАЧА
+	Контрольная цифра
+В этом Ката вам будут даны number, два индекса ( index1и index2) и digitискомое. Ваша задача будет заключаться в том, чтобы проверить, 
+digitсуществует ли в number, в пределах indexesзаданного.
+
+Будьте осторожны, это index2не обязательно больше, чем index1.
+
+  index1 == 2 and index2 == 5 -> snippet from 2 to 5 positons;
+  index1 == 5 and index2 == 2 -> snippet from 2 to 5 positons;
+
+  number.length = 14;
+
+	РЕШЕНИЕ
+def check_digit(number, index1, index2, digit):
+    if index1 > index2:
+        return  str(digit) in str(number)[index2: index1 + 1]
+    else:
+        return str(digit) in  str(number)[index1: index2 +1]
+
+	ЗАДАЧА
+	Приветствуй меня
+Напишите метод, который принимает один аргумент в качестве имени, а затем приветствует это имя, пишется с заглавной буквы и 
+заканчивается восклицательным знаком.
+Пример:
+"riley" --> "Hello Riley!"
+"JACK"  --> "Hello Jack!"
+
+	РЕШЕНИЕ
+def greet(name): 
+    return f"Hello {name.title()}!"
+
+	ЗАДАЧА
+	Найти индекс второго вхождения буквы в строке
+ОПИСАНИЕ:
+В этом ката вам нужно написать функцию, которая принимает строку и букву в качестве входных данных, а затем возвращает индекс 
+второго вхождения этой буквы в строку. Если такой буквы в строке нет, то функция должна вернуть -1. Если буква встречается в строке 
+только один раз, то также следует вернуть -1.
+
+Примеры:
+
+second_symbol('Hello world!!!','l') --> 3
+second_symbol('Hello world!!!', 'A') --> -1
+
+	РЕШЕНИЕ
+def second_symbol(s, symbol):
+    if symbol in s:
+        s = s.replace(symbol, '*', 1)
+        return s.find(symbol)
+    else:
+        return - 1
+
+
+
+	ЗАДАЧА
+	Подсчитайте цифру
+Возьмите целое число n (n >= 0)и цифру d (0 <= d <= 9)как целое число.
+Возведите в квадрат все числа k (0 <= k <= n)от 0 до n.
+Подсчитайте количество цифр, dиспользованных при написании всех k**2.
+Реализуйте функцию, принимающую nи dв качестве параметров и возвращающую это количество.
+Примеры:
+n = 10, d = 1 
+the k*k are 0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100
+We are using the digit 1 in: 1, 16, 81, 100. The total count is then 4.
+The function, when given n = 25 and d = 1 as argument, should return 11 since
+the k*k that contain the digit 1 are:
+1, 16, 81, 100, 121, 144, 169, 196, 361, 441.
+So there are 11 digits 1 for the squares of numbers between 0 and 25.
+Обратите внимание, что 121имеет удвоенную цифру 1.
+
+	РЕШЕНИЕ
+def nb_dig(n, d):
+    sp = [str(i ** 2) for i in range(n + 1)]
+    total = 0
+    for i in sp:
+        for j in i:
+            if j == str(d):
+                total += 1
+    return total
+
+	ЗАДАЧА
+	Считать овец...
+Рассмотрим массив/список овец, где некоторые овцы могут отсутствовать на своем месте. Нам нужна функция, которая подсчитывает 
+количество овец, присутствующих в массиве (true означает наличие).
+Например,
+
+[True,  True,  True,  False,
+  True,  True,  True,  True ,
+  True,  False, True,  False,
+  True,  False, False, True ,
+  True,  True,  True,  True ,
+  False, False, True,  True]
+Правильный ответ будет 17.
+
+Подсказка: не забудьте проверить наличие неправильных значений, таких как null/undefined
+
+	РЕШЕНИЕ
+def count_sheeps(sheep):
+    d = {True: 0}
+    for i in sheep:
+        if i in d:
+            d[i] += 1
+    return d[True]
+
+
+
+
